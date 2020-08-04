@@ -1,0 +1,48 @@
+<mat-tab-group class="user-mgr" mat-align-tabs="start">
+  <mat-tab label="User management">
+    <h1 class="mat-display-1">List all user on the application</h1>
+    <mat-grid-list cols="12">
+      <mat-grid-tile
+          [colspan]="2">
+          <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+            <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+              <button mat-icon-button disabled></button>
+              {{node.name}}
+            </mat-tree-node>
+            <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+              <button mat-icon-button matTreeNodeToggle
+                      [attr.aria-label]="'toggle ' + node.name">
+                <mat-icon class="mat-icon-rtl-mirror">
+                  {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                </mat-icon>
+              </button>
+              {{node.name}}
+            </mat-tree-node>
+          </mat-tree>
+
+      </mat-grid-tile>
+      <mat-grid-tile
+          [colspan]="10">
+        <div>
+          <div *ngIf="loading">
+            Loading...
+          </div>
+          <div *ngIf="error">
+            Error :(
+          </div>
+
+          <div class="data-table-wrapper" *ngIf="users">
+            <ngx-datatable [rows]="users" [columns]="columns"> </ngx-datatable>
+          </div>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <button mat-fab><mat-icon>add</mat-icon></button>
+  </mat-tab>
+  <mat-tab label="Group management">
+      Group management for the application
+  </mat-tab>
+  <mat-tab label="Activity overview">
+      Overview of the activity on the application
+  </mat-tab>
+</mat-tab-group>
