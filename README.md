@@ -25,3 +25,20 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Project init
+
+```bash
+ng new ngfr --create-application=false --directory=angular --interactive=false && \
+cd angular && \
+ng generate application admin --style=less --routing=true && \
+ng add @angular/material --project=admin && \
+ng g module --project=admin --routing=true Settings && \
+ng g module --project=admin --routing=true Home && \
+ng g component --project=admin -m home Home && \
+ng g component --project=admin -m settings Settings && \
+ng serve --project=admin 
+```
+
+## lack
+For now, `ngrx` cannot be added here since it cause some bugs.
